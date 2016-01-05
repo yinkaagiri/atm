@@ -34,7 +34,7 @@ var checkingDeposit = function(){
 }
 
 function checkingWithdrawal(){
-  checkingBalance -= getUserCheckingInput();;
+  checkingBalance -= getUserCheckingInput();
 
   checkingBalanceDiv.innerHTML = "$" + checkingBalance;
 
@@ -77,3 +77,5 @@ document.querySelector('#checkingDepositButton').addEventListener('click', check
 document.querySelector('#checkingWithdrawalButton').addEventListener('click', checkingWithdrawal);
 document.querySelector('#savingsDepositButton').addEventListener('click', savingsDeposit);
 document.querySelector('#savingsWithdrawalButton').addEventListener('click', savingsWithdrawal);
+
+
