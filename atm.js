@@ -3,27 +3,9 @@ var savingsBalance = 0;
 
 var getUserCheckingInput = function(){
   amount = parseInt( document.querySelector('#checkingAmount').value );
-  targetValue = event.target.getAttribute('value');
-
-  console.log(targetValue);
-
-  //need to refactor this...
-  if ( targetValue == "Withdraw" && amount > checkingBalance + savingsBalance ){
-    alert("You're overdrawn!");
-    document.querySelector('#checkingAmount').value = '';
-    return checkingBalance = 0;
-
-  } else if ( targetValue == "Withdraw" && amount > checkingBalance && amount < (checkingBalance + savingsBalance) ) {
-    savingsBalance = (checkingBalance + savingsBalance) - amount;
-    checkingBalance = 0;
-    savingsDeposit();
-    return 0;
-
-  } else {
-    checkingBalanceDiv = document.querySelector('#checkingBalanceDiv');
-    document.querySelector('#checkingAmount').value = '';
-    return amount;
-  }
+  checkingBalanceDiv = document.querySelector('#checkingBalanceDiv');
+  document.querySelector('#checkingAmount').value = '';
+  return amount;
 }
 
 var getUserSavingsInput = function(){
@@ -43,7 +25,6 @@ var checkingDeposit = function(){
   } else {
     checkingBalanceDiv.classList.remove("zero");
   }
-
  }
 
 function checkingWithdrawal(){
