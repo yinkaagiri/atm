@@ -3,9 +3,27 @@ var savingsBalance = 0;
 
 var getUserCheckingInput = function(){
   amount = parseInt( document.querySelector('#checkingAmount').value );
-  checkingBalanceDiv = document.querySelector('#checkingBalanceDiv');
-  document.querySelector('#checkingAmount').value = '';
-  return amount;
+  targetValue = event.target.getAttribute('value');
+
+  console.log(targetValue);
+
+  //need to refactor this...
+  if ( targetValue == "Withdraw" && amount > checkingBalance + savingsBalance ){
+    alert("You're overdrawn!");
+    document.querySelector('#checkingAmount').value = '';
+    return checkingBalance = 0;
+
+  } else if ( targetValue == "Withdraw" && amount > checkingBalance && amount < (checkingBalance + savingsBalance) ) {
+    savingsBalance = (checkingBalance + savingsBalance) - amount;
+    checkingBalance = 0;
+    savingsDeposit();
+    return 0;
+
+  } else {
+    checkingBalanceDiv = document.querySelector('#checkingBalanceDiv');
+    document.querySelector('#checkingAmount').value = '';
+    return amount;
+  }
 }
 
 var getUserSavingsInput = function(){
@@ -26,16 +44,10 @@ var checkingDeposit = function(){
     checkingBalanceDiv.classList.remove("zero");
   }
 
-  // add class using ternary
-  // checkClass = (checkingBalance == 0) ? "balance zero" : "balance"
-  // checkingBalanceDiv.className = checkClass
-
-  // (checkingBalance == 0) ? checkingBalanceDiv.className = "balance zero" : checkingBalanceDiv.className = "balance"
-}
+ }
 
 function checkingWithdrawal(){
   checkingBalance -= getUserCheckingInput();
-
   checkingBalanceDiv.innerHTML = "$" + checkingBalance;
 
   // add class using if/else
@@ -59,8 +71,7 @@ function savingsDeposit(){
 }
 
 function savingsWithdrawal(){
-  savingsBalance -= getUserSavingsInput();;
-
+  savingsBalance -= getUserSavingsInput();
   savingsBalanceDiv.innerHTML = "$" + savingsBalance;
 
   // add class using if/else
