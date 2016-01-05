@@ -1,73 +1,74 @@
-var checkingBalance = 0;
-var savingsBalance = 0;
+$(function(){
+  var checkingBalance = 0;
+  var savingsBalance = 0;
+  var $checkingBalanceDiv = $('#checkingBalanceDiv');
+  var $savingsBalanceDiv = $('#savingsBalanceDiv');
+  var $checkingAmount = $("#checkingAmount");
+  var $savingsAmount = $("#savingsAmount");
 
-var getUserCheckingInput = function(){
-  amount = parseInt( document.querySelector('#checkingAmount').value );
-  checkingBalanceDiv = document.querySelector('#checkingBalanceDiv');
-  document.querySelector('#checkingAmount').value = '';
-  return amount;
-}
-
-var getUserSavingsInput = function(){
-  amount = parseInt( document.querySelector('#savingsAmount').value );
-  savingsBalanceDiv = document.querySelector('#savingsBalanceDiv');
-  document.querySelector('#savingsAmount').value = '';
-  return amount;
-}
-
-var checkingDeposit = function(){  
-  checkingBalance += getUserCheckingInput();
-  checkingBalanceDiv.innerHTML = "$" + checkingBalance;
-
-  // add class using if/else
-  if (checkingBalance == 0) {
-    checkingBalanceDiv.classList.add("zero");
-  } else {
-    checkingBalanceDiv.classList.remove("zero");
-  }
- }
-
-function checkingWithdrawal(){
-  checkingBalance -= getUserCheckingInput();
-  checkingBalanceDiv.innerHTML = "$" + checkingBalance;
-
-  // add class using if/else
-  if (checkingBalance == 0) {
-    checkingBalanceDiv.classList.add("zero");
-  } else {
-    checkingBalanceDiv.classList.remove("zero");
-  }
-}
-
-function savingsDeposit(){
-  savingsBalance += getUserSavingsInput();
-  savingsBalanceDiv.innerHTML = "$" + savingsBalance;
-
-  // add class using if/else
-  if (savingsBalance == 0) {
-    savingsBalanceDiv.classList.add("zero");
-  } else {
-    savingsBalanceDiv.classList.remove("zero");
-  }
-}
-
-function savingsWithdrawal(){
-  savingsBalance -= getUserSavingsInput();
-  savingsBalanceDiv.innerHTML = "$" + savingsBalance;
-
-  // add class using if/else
-  if (savingsBalance == 0) {
-    savingsBalanceDiv.classList.add("zero");
-  } else {
-    savingsBalanceDiv.classList.remove("zero");
+  var getUserCheckingInput = function(){
+    var amount = parseInt( $checkingAmount.val() );
+    $checkingAmount.val('');
+    return amount;
   }
 
-}
+  var getUserSavingsInput = function(){
+    var amount = parseInt( $savingsAmount.val() );
+    $savingsAmount.val("");
+    return amount;
+  }
 
-// an eventListener for each button, each one a "click"
-document.querySelector('#checkingDepositButton').addEventListener('click', checkingDeposit);
-document.querySelector('#checkingWithdrawalButton').addEventListener('click', checkingWithdrawal);
-document.querySelector('#savingsDepositButton').addEventListener('click', savingsDeposit);
-document.querySelector('#savingsWithdrawalButton').addEventListener('click', savingsWithdrawal);
+  var checkingDeposit = function(){
+    checkingBalance += getUserCheckingInput();
+    $checkingBalanceDiv.html("$" + checkingBalance);
 
+    // add class using if/else
+    if (checkingBalance == 0) {
+      $checkingBalanceDiv.addClass("zero");
+    } else {
+      $checkingBalanceDiv.removeClass("zero");
+    }
+   }
 
+  function checkingWithdrawal(){
+    checkingBalance -= getUserCheckingInput();
+    $checkingBalanceDiv.html("$" + checkingBalance);
+    // add class using if/else
+    if (checkingBalance == 0) {
+      $checkingBalanceDiv.addClass("zero");
+    } else {
+      $checkingBalanceDiv.removeClass("zero");
+    }
+  }
+
+  function savingsDeposit(){
+    savingsBalance += getUserSavingsInput();
+    $savingsBalanceDiv.html("$" + savingsBalance);
+
+    // add class using if/else
+    if (savingsBalance == 0) {
+      $savingsBalanceDiv.addClass("zero");
+    } else {
+      $savingsBalanceDiv.removeClass("zero");
+    }
+  }
+
+  function savingsWithdrawal(){
+    savingsBalance -= getUserSavingsInput();
+    $savingsBalanceDiv.html("$" + savingsBalance);
+
+    // add class using if/else
+    if (savingsBalance == 0) {
+      $savingsBalanceDiv.addClass("zero");
+    } else {
+      $savingsBalanceDiv.removeClass("zero");
+    }
+
+  }
+
+  // an eventListener for each button, each one a "click"
+  $('#checkingDepositButton').on('click', checkingDeposit);
+  $('#checkingWithdrawalButton').on('click', checkingWithdrawal);
+  $('#savingsDepositButton').on('click', savingsDeposit);
+  $('#savingsWithdrawalButton').on('click', savingsWithdrawal);
+})
