@@ -5,7 +5,7 @@ var checkingBalance = $(".checkingBalance");
 var Balance =0
 var checkingDepositButton = $("#checkingDepositButton");
 var checkingDepositInput = $("#checking_deposit");
-var checkingWithdraw = $("#checkingWithdraw");
+var checkingWithdrawButton = $("#checkingWithdrawButton");
 checkingDepositButton.on("click", function(){
   var checkingInput = checkingDepositInput.val()
   Balance += parseInt(checkingInput);
@@ -13,7 +13,11 @@ checkingDepositButton.on("click", function(){
   console.log();
 });
 
-
+checkingWithdrawButton.on("click", function(){
+var withdraw = Balance - (checkingDepositInput.val());
+checkingBalance.html(withdraw);
+console.log(checkingBalance.html());
+})
 // checkingBalance = parseInt(checking_balance.innerHTML.replace("$", "") );
 
 // get savings deposit value
