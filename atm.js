@@ -1,25 +1,34 @@
 $(document).ready(function(){
 // var checking = new Account($("#cheking"));
 // var checking = new Account($("#savings"));
-var checkingBalance = $(".checkingBalance");
-var Balance =0
+var checkingSection = $(".checkingBalance");
+var chekingBalance =0
 var checkingDepositButton = $("#checkingDepositButton");
 var checkingDepositInput = $("#checking_deposit");
 var checkingWithdrawButton = $("#checkingWithdrawButton");
+
+var savingsSection =  $(".savingsBalance");
+var savingsBalance = 0
+var savingsDepositInput = $("#savingsDepositInput");
+var savingsDepositButton = $("#savingsDepositButton");
+var savingsWithdrawButton = $("savingsWithdrawButton");
+
+
 function Checking(){
 checkingDepositButton.on("click", function(){
   var checkingInput = checkingDepositInput.val()
-  Balance += parseInt(checkingInput);
-  checkingBalance.html(Balance);
+  chekingBalance += parseInt(checkingInput);
+  checkingSection.html(chekingBalance);
 });
 
 checkingWithdrawButton.on("click", function(){
-var withdraw = Balance - (checkingDepositInput.val());
-checkingBalance.html(withdraw);
-console.log(checkingBalance.html());
-Balance = parseInt(checkingBalance.html());
+var withdraw = chekingBalance - (checkingDepositInput.val());
+checkingSection.html(withdraw);
+console.log(checkingSection.html());
+chekingBalance = parseInt(checkingSection.html());
 })
 };
+
 
 
 
