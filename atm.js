@@ -6,18 +6,23 @@ var Balance =0
 var checkingDepositButton = $("#checkingDepositButton");
 var checkingDepositInput = $("#checking_deposit");
 var checkingWithdrawButton = $("#checkingWithdrawButton");
+function Checking(){
 checkingDepositButton.on("click", function(){
   var checkingInput = checkingDepositInput.val()
   Balance += parseInt(checkingInput);
   checkingBalance.html(Balance);
-  console.log();
 });
 
 checkingWithdrawButton.on("click", function(){
 var withdraw = Balance - (checkingDepositInput.val());
 checkingBalance.html(withdraw);
 console.log(checkingBalance.html());
+Balance = parseInt(checkingBalance.html());
 })
+};
+
+
+
 // checkingBalance = parseInt(checking_balance.innerHTML.replace("$", "") );
 
 // get savings deposit value
@@ -45,5 +50,6 @@ function savingsWithdrawal(amount){
 
 }
 
+Checking();
 // an eventListerner for each button, each one a "click"
 });
