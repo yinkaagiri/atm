@@ -22,9 +22,14 @@ checkingDepositButton.on("click", function(){
 });
 
 checkingWithdrawButton.on("click", function(){
+  if (checkingDepositInput.val() < chekingBalance){
 var withdraw = chekingBalance - (checkingDepositInput.val());
 checkingDisplay.html(withdraw);
 chekingBalance = parseInt(checkingDisplay.html());
+}
+else {
+  alert("You do not have enough balance in your Checking Account to cover this transaction!");
+}
 })
 };
 
@@ -36,9 +41,14 @@ function Savings(){
     console.log(savingsBalance);
   });
   savingsWithdrawButton.on("click", function(){
+    if (savingsDepositInput.val() < savingsBalance){
     var savingsWithdraw = savingsBalance - (savingsDepositInput.val());
     savingsDisplay.html(savingsWithdraw);
     savingsBalance = parseInt(savingsDisplay.html());
+    }
+    else {
+      alert("You do not have enough balance in your Savings Account to cover this transaction!");
+    }
   });
 }
 
